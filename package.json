@@ -1,0 +1,27 @@
+{
+  "name": "radiowaves-api",
+  "version": "1.0.0",
+  "description": "Backend for RadioWaves App. It currently has only the proxy server to retrieve radio stations since https has issues and http request cannot be called in production from the browser. Will be mainly used in the future to extend the web app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.ts",
+    "start:dev": "nodemon --exec ts-node-dev --respawn --transpile-only server.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.6.8",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "nodemon": "^3.1.0",
+    "radio-browser-api": "^6.0.1",
+    "typescript": "^5.4.4"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0"
+  }
+}
