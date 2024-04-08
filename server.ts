@@ -1,12 +1,11 @@
 import express from 'express';
-const cors = require('cors');
+import cors from 'cors';
 import { RadioBrowserApi, Station } from 'radio-browser-api';
 
 const app = express();
 const port = 3002;
 
 app.use(cors());
-
 
 app.use(express.json());
 
