@@ -19,14 +19,33 @@ const app = (0, express_1.default)();
 const port = 3002;
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
-app.get('/api/servers', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+app.get('/api/filters', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const genre = req.query.genre;
         const api = new radio_browser_api_1.RadioBrowserApi('My Radio App');
         const stationsData = yield api.searchStations({
             language: 'english',
             tag: genre,
-            limit: 50,
+            limit: 200,
+        });
+        res.json(stationsData);
+    }
+    catch (error) {
+        console.error('Error fetching data from Radio Browser API:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+}));
+app.get('/api/search', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const searchterm = req.query.searchterm;
+        if (!searchterm) {
+            return res.status(400).json({ error: 'Search term is required' });
+        }
+        const api = new radio_browser_api_1.RadioBrowserApi('My Radio App');
+        const stationsData = yield api.searchStations({
+            language: 'english',
+            name: searchterm,
+            limit: 200,
         });
         res.json(stationsData);
     }
